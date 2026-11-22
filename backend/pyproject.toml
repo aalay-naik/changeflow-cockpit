@@ -1,0 +1,31 @@
+[project]
+name = "changeflow-backend"
+version = "0.1.0"
+description = "FastAPI backend for ChangeFlow Cockpit"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "fastapi>=0.165.0",
+    "uvicorn>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.2.0",
+    "ruff>=0.17.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+# E/F: errors and pyflakes, I: import order, B: common bugs, UP: modern syntax, S: security checks
+select = ["E", "F", "I", "B", "UP", "S"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests use plain `assert`, which is fine there
+"tests/**" = ["S101"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,24 @@
+# Local services for ChangeFlow Cockpit.
+# Start from the project root:  docker compose -f infra/docker-compose.yml up -d
+name: changeflow
+
+services:
+  postgres:
+    image: postgres:18
+    restart: unless-stopped
+    # Username, password and database name come from the root .env file (never in Git)
+    env_file: ../.env
+    ports:
+      # 127.0.0.1 = only reachable from this Mac, not from the network
+      - "127.0.0.1:5432:5432"
+    volumes:
+      # Named volume: data survives when the container is removed
+      - postgres-data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres-data:

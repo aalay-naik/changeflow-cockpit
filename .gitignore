@@ -1,0 +1,22 @@
+# Personal Claude Code settings
+.claude/settings.local.json
+
+# Secrets (only the template with fake values is committed)
+.env
+.env.*
+!.env.example
+
+# Generated data
+data/generated/
+
+# Python (backend)
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+
+# Node / Next.js (frontend has its own .gitignore too)
+node_modules/
+
+# macOS
+.DS_Store
