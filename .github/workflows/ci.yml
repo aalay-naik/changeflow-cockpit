@@ -1,17 +1,20 @@
-# Runs linting and tests on every pull request.
+# Runs linting and tests on every pull request and on every push to main.
 name: CI
 
 on:
   pull_request:
+  push:
+    branches: [main]
 
 # Least privilege: the pipeline can only read the code
 permissions:
   contents: read
 
-# A new push to the same pull request cancels the older, now outdated run
+# A new push to the same pull request cancels the older, now outdated run.
+# Runs on main are never cancelled, so every commit on main gets a full result.
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   backend:

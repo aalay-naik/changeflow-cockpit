@@ -1,5 +1,7 @@
 # ChangeFlow Cockpit
 
+[![CI](https://github.com/aalay-naik/changeflow-cockpit/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/aalay-naik/changeflow-cockpit/actions/workflows/ci.yml)
+
 Change pipeline dashboard for a fictional automotive OEM, built on **synthetic data only**.
 
 Stack: Python FastAPI + PostgreSQL (backend), Next.js TypeScript (frontend), Docker Compose, GitHub Actions.
